@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natural Language Action Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="glow-bg"></div>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <h1>ActionAgent AI</h1>
+          <p class="subtitle">Natural Language Action Execution & Safety Engine</p>
+        </div>
+      </div>
+      <div class="provider-badge">
+        <span class="pulse-dot"></span>
+        <span id="providerText">LLM: Offline Model</span>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="grid-layout">
+      <!-- Left Column: Console & Presets -->
+      <section class="card console-card">
+        <div class="card-header">
+          <h2>Command Console</h2>
+          <span class="tag">POST /command</span>
+        </div>
+
+        <form id="commandForm">
+          <div class="input-wrapper">
+            <textarea id="commandInput" placeholder="Enter natural language command e.g., 'Alert me if warehouse-3 temperature stays above 40°C for more than 10 minutes'..." rows="3" required></textarea>
+            <button type="submit" id="submitBtn">
+              <span>Execute Action</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+        </form>
+
+        <!-- Test Case Preset Buttons -->
+        <div class="presets-section">
+          <h3>Quick Test Cases (Mandatory Verification)</h3>
+          <div class="preset-buttons">
+            <button type="button" class="preset-btn" data-text="Alert me if warehouse-3 temperature stays above 40°C for more than 10 minutes">
+              <span class="btn-num">1</span> Valid Alert Rule
+            </button>
+            <button type="button" class="preset-btn" data-text="what's the humidity in cold-storage-1 right now">
+              <span class="btn-num">2</span> Status Query
+            </button>
+            <button type="button" class="preset-btn" data-text="notify security if the front-gate camera goes offline">
+              <span class="btn-num">3</span> Ambiguous Request
+            </button>
+            <button type="button" class="preset-btn" data-text="turn off all the lights in building 7">
+              <span class="btn-num">4</span> Out of Scope Action
+            </button>
+            <button type="button" class="preset-btn warning" data-text="alert me if the reactor-core pressure exceeds 9000">
+              <span class="btn-num">5</span> Invalid Device (Rejection)
+            </button>
+          </div>
+        </div>
+
+        <!-- Output Inspector -->
+        <div class="output-section">
+          <div class="card-header border-top">
+            <h3>Pipeline Inspector Result</h3>
+            <span id="statusBadge" class="status-badge idle">Awaiting Input</span>
+          </div>
+          <div class="result-details">
+            <p id="resultMessage" class="result-msg">Submit a command above to view LLM parsing & backend validation step-by-step.</p>
+          </div>
+          <div class="json-tabs">
+            <div class="tab active">LLM Output (`understood_as`) & Response JSON</div>
+          </div>
+          <pre id="jsonOutput" class="json-viewer">// Output payload will render here...</pre>
+        </div>
+      </section>
+
+      <!-- Right Column: Device Registry & Alert Rules -->
+      <section class="right-column">
+        <!-- Device Registry Card -->
+        <div class="card devices-card">
+          <div class="card-header">
+            <h2>Fake Device Registry</h2>
+            <button id="refreshDevicesBtn" class="icon-btn" title="Refresh Devices">🔄</button>
+          </div>
+          <div id="devicesContainer" class="device-grid">
+            <!-- Rendered by app.js -->
+          </div>
+        </div>
+
+        <!-- In-Memory Rules Card -->
+        <div class="card rules-card">
+          <div class="card-header">
+            <h2>Stored Alert Rules (`GET /rules`)</h2>
+            <button id="refreshRulesBtn" class="icon-btn" title="Refresh Rules">🔄</button>
+          </div>
+          <div class="table-wrapper">
+            <table class="rules-table">
+              <thead>
+                <tr>
+                  <th>Rule ID</th>
+                  <th>Device</th>
+                  <th>Metric</th>
+                  <th>Condition</th>
+                  <th>Threshold</th>
+                  <th>Duration</th>
+                  <th>Channels</th>
+                </tr>
+              </thead>
+              <tbody id="rulesTableBody">
+                <tr>
+                  <td colspan="7" class="empty-state">No rules created yet in memory.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

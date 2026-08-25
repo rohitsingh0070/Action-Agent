@@ -1,0 +1,67 @@
+{
+  "warehouse-3": {
+    "name": "Warehouse 3 Main Area",
+    "metrics": ["temperature", "humidity"],
+    "telemetry": {
+      "temperature": 24.5,
+      "humidity": 45.0
+    }
+  },
+  "cold-storage-1": {
+    "name": "Cold Storage Unit 1",
+    "metrics": ["temperature", "humidity"],
+    "telemetry": {
+      "temperature": -4.2,
+      "humidity": 82.0
+    }
+  },
+  "front-gate": {
+    "name": "Front Security Gate",
+    "metrics": ["camera_status"],
+    "telemetry": {
+      "camera_status": "ONLINE"
+    }
+  },
+  "server-room-1": {
+    "name": "Main Server Room",
+    "metrics": ["temperature", "humidity", "vibration"],
+    "telemetry": {
+      "temperature": 19.8,
+      "humidity": 38.5,
+      "vibration": 0.02
+    }
+  },
+  "hvac-unit-4": {
+    "name": "HVAC Unit 4 (Floor 2)",
+    "metrics": ["temperature", "pressure", "fan_speed"],
+    "telemetry": {
+      "temperature": 22.1,
+      "pressure": 101.3,
+      "fan_speed": 1200
+    }
+  },
+  "solar-array-2": {
+    "name": "Rooftop Solar Array 2",
+    "metrics": ["power_output", "voltage"],
+    "telemetry": {
+      "power_output": 4500.0,
+      "voltage": 230.0
+    }
+  },
+  "main-entrance": {
+    "name": "Main Lobby Entrance",
+    "metrics": ["door_status", "motion"],
+    "telemetry": {
+      "door_status": "LOCKED",
+      "motion": "NONE"
+    }
+  },
+  "water-tank-1": {
+    "name": "Industrial Water Tank 1",
+    "metrics": ["water_level", "pressure"],
+    "telemetry": {
+      "water_level": 88.5,
+      "pressure": 3.2
+    }
+  }
+}
